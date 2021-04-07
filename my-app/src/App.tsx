@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header>
+        <title>Kata Lonja React</title>
       </header>
+      <body>
+        <form>
+          <fieldset>
+            <label htmlFor="vieiras">Vieiras:</label>
+            <input id="vieiras"></input>
+            <label htmlFor="pulpo">Pulpo:</label>
+            <input id="pulpo"></input>
+            <label htmlFor="centollos">Centollos:</label>
+            <input type="text" id="centollos"></input>
+            <input type="button" value="enviar"/>
+          </fieldset>
+        </form>
+      </body>
     </div>
   );
 }
