@@ -10,9 +10,6 @@ function FormularioPeso() {
     const vieiras: number = event.target.elements.vieirasInput.value;
     const pulpo: number = event.target.elements.pulpoInput.value;
     const centollos: number = event.target.elements.centollosInput.value;
-    alert(vieiras);
-    alert(pulpo);
-    alert(centollos)
   }
 
   return (
