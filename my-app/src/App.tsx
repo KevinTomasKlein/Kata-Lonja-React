@@ -1,26 +1,46 @@
 import React from "react";
-import logo from "./logo.svg";
+
 import "./App.css";
 
+function FormularioPeso() {
+
+  function handleSubmit(event:any) {
+    event.preventDefault()
+    console.log('pesos enviados');
+    const vieiras: number = event.target.elements.vieirasInput.value;
+    const pulpo: number = event.target.elements.pulpoInput.value;
+    const centollos: number = event.target.elements.centollosInput.value;
+    alert(vieiras);
+    alert(pulpo);
+    alert(centollos)
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <fieldset>
+        <label htmlFor="vieirasInput">Vieiras:</label>
+        <input type='number' id="vieirasInput"></input>
+
+        <label htmlFor="pulpoInput">Pulpo:</label>
+        <input type='number' id="pulpoInput"></input>
+
+        <label htmlFor="centollosInput">Centollos:</label>
+        <input type='number' id="centollosInput"></input>
+
+        <input type="submit" value="enviar" />
+      </fieldset>
+    </form>
+  )
+}
+
 function App() {
+
   return (
     <div className="App">
       <header>
         <title>Kata Lonja React</title>
       </header>
-      <body>
-        <form>
-          <fieldset>
-            <label htmlFor="vieiras">Vieiras:</label>
-            <input id="vieiras"></input>
-            <label htmlFor="pulpo">Pulpo:</label>
-            <input id="pulpo"></input>
-            <label htmlFor="centollos">Centollos:</label>
-            <input type="text" id="centollos"></input>
-            <input type="button" value="enviar"/>
-          </fieldset>
-        </form>
-      </body>
+      <FormularioPeso />
     </div>
   );
 }

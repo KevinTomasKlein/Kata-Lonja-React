@@ -38,7 +38,8 @@
 }
 fieldset {
   display: flex;
-  width: 50%;
+  width: 20%;
+  flex-wrap: wrap;
   justify-content: space-between;
   background-color: cadetblue;
 }
