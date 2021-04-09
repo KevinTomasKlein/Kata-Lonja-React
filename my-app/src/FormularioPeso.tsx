@@ -1,9 +1,9 @@
 function FormularioPeso(): any {
   function devolverCiudadConMasBeneficio(event: any) {
     event.preventDefault();
-    const pesoVieiras: number = event.target.elements.vieirasInput.value;
-    const pesoPulpo: number = event.target.elements.pulpoInput.value;
-    const pesoCentollos: number = event.target.elements.centollosInput.value;
+    const PESO_VIEIRAS: number = event.target.elements.vieirasInput.value;
+    const PESO_PULPOS: number = event.target.elements.pulpoInput.value;
+    const PESO_CENTOLLOS: number = event.target.elements.centollosInput.value;
 
     let Madrid: number;
     let Barcelona: number;
@@ -16,7 +16,7 @@ function FormularioPeso(): any {
       distanciaCiudad: number[];
     }
 
-    const ciudades: Ciudad = {
+    const CIUDADES: Ciudad = {
       nombresCiudades: ["Madrid", "Barcelona", "Lisboa"],
       tipoAlimentos: ["Vieiras", "Pulpo", "Centollos"],
       precioAlimentos: [
@@ -27,56 +27,59 @@ function FormularioPeso(): any {
       distanciaCiudad: [800, 1100, 600],
     };
 
-    for (let i: number = 0; i < ciudades.nombresCiudades.length; i++) {
+    for (let i: number = 0; i < CIUDADES.nombresCiudades.length; i++) {
       let precioPorCiudad: any;
-
-      switch (ciudades.nombresCiudades[i]) {
-        case "Madrid":
-          precioPorCiudad = calcularBeneficioPorCiudad(
-            ciudades.precioAlimentos[i][0],
-            pesoVieiras,
-            ciudades.precioAlimentos[i][1],
-            pesoPulpo,
-            ciudades.precioAlimentos[i][2],
-            pesoCentollos
-          );
-          Madrid = calcularBeneficioFinal(
-            precioPorCiudad,
-            ciudades.distanciaCiudad[i]
-          );
-          break;
-        case "Barcelona":
-          precioPorCiudad = calcularBeneficioPorCiudad(
-            ciudades.precioAlimentos[i][0],
-            pesoVieiras,
-            ciudades.precioAlimentos[i][1],
-            pesoPulpo,
-            ciudades.precioAlimentos[i][2],
-            pesoCentollos
-          );
-          Barcelona = calcularBeneficioFinal(
-            precioPorCiudad,
-            ciudades.distanciaCiudad[i]
-          );
-          break;
-        case "Lisboa":
-          precioPorCiudad = calcularBeneficioPorCiudad(
-            ciudades.precioAlimentos[i][0],
-            pesoVieiras,
-            ciudades.precioAlimentos[i][1],
-            pesoPulpo,
-            ciudades.precioAlimentos[i][2],
-            pesoCentollos
-          );
-          Lisboa = calcularBeneficioFinal(
-            precioPorCiudad,
-            ciudades.distanciaCiudad[i]
-          );
-          break;
-      }
+      CIUDADES.precioAlimentos.forEach((preciosAlimentos) => {
+        preciosAlimentos.forEach((precio) => {
+          switch (CIUDADES.nombresCiudades[i]) {
+            case "Madrid":
+              precioPorCiudad = calcularBeneficio(
+                CIUDADES.precioAlimentos[i][precio],
+                PESO_VIEIRAS,
+                CIUDADES.precioAlimentos[i][precio],
+                PESO_PULPOS,
+                CIUDADES.precioAlimentos[i][precio],
+                PESO_CENTOLLOS
+              );
+              Madrid = calcularBeneficioFinal(
+                precioPorCiudad,
+                CIUDADES.distanciaCiudad[i]
+              );
+              break;
+            case "Barcelona":
+              precioPorCiudad = calcularBeneficio(
+                CIUDADES.precioAlimentos[i][precio],
+                PESO_VIEIRAS,
+                CIUDADES.precioAlimentos[i][precio],
+                PESO_PULPOS,
+                CIUDADES.precioAlimentos[i][precio],
+                PESO_CENTOLLOS
+              );
+              Barcelona = calcularBeneficioFinal(
+                precioPorCiudad,
+                CIUDADES.distanciaCiudad[i]
+              );
+              break;
+            case "Lisboa":
+              precioPorCiudad = calcularBeneficio(
+                CIUDADES.precioAlimentos[i][precio],
+                PESO_VIEIRAS,
+                CIUDADES.precioAlimentos[i][precio],
+                PESO_PULPOS,
+                CIUDADES.precioAlimentos[i][precio],
+                PESO_CENTOLLOS
+              );
+              Lisboa = calcularBeneficioFinal(
+                precioPorCiudad,
+                CIUDADES.distanciaCiudad[i]
+              );
+              break;
+          }
+        });
+      });
     }
 
-    function calcularBeneficioPorCiudad(
+    function calcularBeneficio(
       cantidadAlimento1: number,
       precio1: number,
       cantidadAlimento2: number,
