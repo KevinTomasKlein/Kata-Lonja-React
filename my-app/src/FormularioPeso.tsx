@@ -32,7 +32,7 @@ function FormularioPeso(): any {
 
       switch (ciudades.nombresCiudades[i]) {
         case "Madrid":
-          precioPorCiudad = calcularCiudad(
+          precioPorCiudad = calcularBeneficioPorCiudad(
             ciudades.precioAlimentos[i][0],
             pesoVieiras,
             ciudades.precioAlimentos[i][1],
@@ -40,13 +40,13 @@ function FormularioPeso(): any {
             ciudades.precioAlimentos[i][2],
             pesoCentollos
           );
-          Madrid = calcularCiudadConDesprecioCarga(
+          Madrid = calcularBeneficioFinal(
             precioPorCiudad,
             ciudades.distanciaCiudad[i]
           );
           break;
         case "Barcelona":
-          precioPorCiudad = calcularCiudad(
+          precioPorCiudad = calcularBeneficioPorCiudad(
             ciudades.precioAlimentos[i][0],
             pesoVieiras,
             ciudades.precioAlimentos[i][1],
@@ -54,13 +54,13 @@ function FormularioPeso(): any {
             ciudades.precioAlimentos[i][2],
             pesoCentollos
           );
-          Barcelona = calcularCiudadConDesprecioCarga(
+          Barcelona = calcularBeneficioFinal(
             precioPorCiudad,
             ciudades.distanciaCiudad[i]
           );
           break;
         case "Lisboa":
-          precioPorCiudad = calcularCiudad(
+          precioPorCiudad = calcularBeneficioPorCiudad(
             ciudades.precioAlimentos[i][0],
             pesoVieiras,
             ciudades.precioAlimentos[i][1],
@@ -68,7 +68,7 @@ function FormularioPeso(): any {
             ciudades.precioAlimentos[i][2],
             pesoCentollos
           );
-          Lisboa = calcularCiudadConDesprecioCarga(
+          Lisboa = calcularBeneficioFinal(
             precioPorCiudad,
             ciudades.distanciaCiudad[i]
           );
@@ -76,7 +76,7 @@ function FormularioPeso(): any {
       }
     }
 
-    function calcularCiudad(
+    function calcularBeneficioPorCiudad(
       cantidadAlimento1: number,
       precio1: number,
       cantidadAlimento2: number,
@@ -91,7 +91,7 @@ function FormularioPeso(): any {
       );
     }
 
-    function calcularCiudadConDesprecioCarga(
+    function calcularBeneficioFinal(
       precioPorCiudad: number,
       distanciaCiudad: number
     ): number {
