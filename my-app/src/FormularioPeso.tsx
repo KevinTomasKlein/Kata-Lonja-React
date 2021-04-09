@@ -28,11 +28,11 @@ function FormularioPeso(): any {
     };
 
     for (let i: number = 0; i < ciudades.nombresCiudades.length; i++) {
-      let precioPorCiudadX: any;
+      let precioPorCiudad: any;
 
       switch (ciudades.nombresCiudades[i]) {
         case "Madrid":
-          precioPorCiudadX = calcularCiudad(
+          precioPorCiudad = calcularCiudad(
             ciudades.precioAlimentos[i][0],
             pesoVieiras,
             ciudades.precioAlimentos[i][1],
@@ -41,12 +41,12 @@ function FormularioPeso(): any {
             pesoCentollos
           );
           Madrid = calcularCiudadConDesprecioCarga(
-            precioPorCiudadX,
+            precioPorCiudad,
             ciudades.distanciaCiudad[i]
           );
           break;
         case "Barcelona":
-          precioPorCiudadX = calcularCiudad(
+          precioPorCiudad = calcularCiudad(
             ciudades.precioAlimentos[i][0],
             pesoVieiras,
             ciudades.precioAlimentos[i][1],
@@ -55,12 +55,12 @@ function FormularioPeso(): any {
             pesoCentollos
           );
           Barcelona = calcularCiudadConDesprecioCarga(
-            precioPorCiudadX,
+            precioPorCiudad,
             ciudades.distanciaCiudad[i]
           );
           break;
         case "Lisboa":
-          precioPorCiudadX = calcularCiudad(
+          precioPorCiudad = calcularCiudad(
             ciudades.precioAlimentos[i][0],
             pesoVieiras,
             ciudades.precioAlimentos[i][1],
@@ -69,7 +69,7 @@ function FormularioPeso(): any {
             pesoCentollos
           );
           Lisboa = calcularCiudadConDesprecioCarga(
-            precioPorCiudadX,
+            precioPorCiudad,
             ciudades.distanciaCiudad[i]
           );
           break;
