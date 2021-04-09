@@ -1,23 +1,23 @@
-import React from "react";
-
-
-function FormularioPeso() :any{
-  function handleSubmit(event: any) {
+function FormularioPeso(): any {
+  function devolverCiudadConMasBeneficio(event: any) {
     event.preventDefault();
-    console.log("pesos enviados");
-    const vieiras: number = event.target.elements.vieirasInput.value;
-    const pulpo: number = event.target.elements.pulpoInput.value;
-    const centollos: number = event.target.elements.centollosInput.value;
+    const pesoVieiras: number = event.target.elements.vieirasInput.value;
+    const pesoPulpo: number = event.target.elements.pulpoInput.value;
+    const pesoCentollos: number = event.target.elements.centollosInput.value;
+
+    let Madrid: number;
+    let Barcelona: number;
+    let Lisboa: number;
 
     interface Ciudad {
-      nombres: string[];
+      nombresCiudades: string[];
       tipoAlimentos: string[];
       precioAlimentos: number[][];
       distanciaCiudad: number[];
     }
 
     const ciudades: Ciudad = {
-      nombres: ["Madrid", "Barcelona", "Lisboa"],
+      nombresCiudades: ["Madrid", "Barcelona", "Lisboa"],
       tipoAlimentos: ["Vieiras", "Pulpo", "Centollos"],
       precioAlimentos: [
         [500, 0, 450],
@@ -26,6 +26,55 @@ function FormularioPeso() :any{
       ],
       distanciaCiudad: [800, 1100, 600],
     };
+
+    for (let i: number = 0; i < ciudades.nombresCiudades.length; i++) {
+      let precioPorCiudadX: any;
+
+      switch (ciudades.nombresCiudades[i]) {
+        case "Madrid":
+          precioPorCiudadX = calcularCiudad(
+            ciudades.precioAlimentos[i][0],
+            pesoVieiras,
+            ciudades.precioAlimentos[i][1],
+            pesoPulpo,
+            ciudades.precioAlimentos[i][2],
+            pesoCentollos
+          );
+          Madrid = calcularCiudadConDesprecioCarga(
+            precioPorCiudadX,
+            ciudades.distanciaCiudad[i]
+          );
+          break;
+        case "Barcelona":
+          precioPorCiudadX = calcularCiudad(
+            ciudades.precioAlimentos[i][0],
+            pesoVieiras,
+            ciudades.precioAlimentos[i][1],
+            pesoPulpo,
+            ciudades.precioAlimentos[i][2],
+            pesoCentollos
+          );
+          Barcelona = calcularCiudadConDesprecioCarga(
+            precioPorCiudadX,
+            ciudades.distanciaCiudad[i]
+          );
+          break;
+        case "Lisboa":
+          precioPorCiudadX = calcularCiudad(
+            ciudades.precioAlimentos[i][0],
+            pesoVieiras,
+            ciudades.precioAlimentos[i][1],
+            pesoPulpo,
+            ciudades.precioAlimentos[i][2],
+            pesoCentollos
+          );
+          Lisboa = calcularCiudadConDesprecioCarga(
+            precioPorCiudadX,
+            ciudades.distanciaCiudad[i]
+          );
+          break;
+      }
+    }
 
     function calcularCiudad(
       cantidadAlimento1: number,
@@ -51,60 +100,6 @@ function FormularioPeso() :any{
       return precioPorCiudad * desprecioPorTransporte - precioCargarFurgoneta;
     }
 
-    let Madrid: number;
-    let Barcelona: number;
-    let Lisboa: number;
-
-    for (let i: number = 0; i < ciudades.nombres.length; i++) {
-      let precioPorCiudadX: any;
-      var datos: number;
-
-      switch (ciudades.nombres[i]) {
-        case "Madrid":
-          precioPorCiudadX = calcularCiudad(
-            ciudades.precioAlimentos[i][0],
-            vieiras,
-            ciudades.precioAlimentos[i][1],
-            pulpo,
-            ciudades.precioAlimentos[i][2],
-            centollos
-          );
-          Madrid = calcularCiudadConDesprecioCarga(
-            precioPorCiudadX,
-            ciudades.distanciaCiudad[i]
-          );
-          break;
-        case "Barcelona":
-          precioPorCiudadX = calcularCiudad(
-            ciudades.precioAlimentos[i][0],
-            vieiras,
-            ciudades.precioAlimentos[i][1],
-            pulpo,
-            ciudades.precioAlimentos[i][2],
-            centollos
-          );
-          Barcelona = calcularCiudadConDesprecioCarga(
-            precioPorCiudadX,
-            ciudades.distanciaCiudad[i]
-          );
-          break;
-        case "Lisboa":
-          precioPorCiudadX = calcularCiudad(
-            ciudades.precioAlimentos[i][0],
-            vieiras,
-            ciudades.precioAlimentos[i][1],
-            pulpo,
-            ciudades.precioAlimentos[i][2],
-            centollos
-          );
-          Lisboa = calcularCiudadConDesprecioCarga(
-            precioPorCiudadX,
-            ciudades.distanciaCiudad[i]
-          );
-          break;
-      }
-    }
-
     function menorPrecioCiudad() {
       return Madrid > Barcelona && Madrid > Lisboa
         ? alert("En Madrid se obtendrían más beneficios")
@@ -116,7 +111,7 @@ function FormularioPeso() :any{
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={devolverCiudadConMasBeneficio}>
       <fieldset>
         <label htmlFor="vieirasInput">Vieiras:</label>
         <input type="number" id="vieirasInput"></input>
