@@ -1,9 +1,15 @@
 function FormularioPeso(): any {
   function devolverCiudadConMasBeneficio(event: any) {
     event.preventDefault();
-    const PESO_VIEIRAS: number = event.target.elements.vieirasInput.value;
-    const PESO_PULPOS: number = event.target.elements.pulpoInput.value;
-    const PESO_CENTOLLOS: number = event.target.elements.centollosInput.value;
+    const PESO_VIEIRAS: number = parseFloat(
+      event.target.elements.vieirasInput.value
+    );
+    const PESO_PULPOS: number = parseFloat(
+      event.target.elements.pulpoInput.value
+    );
+    const PESO_CENTOLLOS: number = parseFloat(
+      event.target.elements.centollosInput.value
+    );
 
     let Madrid: number;
     let Barcelona: number;
