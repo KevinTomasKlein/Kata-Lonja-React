@@ -100,14 +100,14 @@ function FormularioPeso(): any {
       return precioPorCiudad * desprecioPorTransporte - precioCargarFurgoneta;
     }
 
-    function menorPrecioCiudad() {
+    function ciudadConMayorBeneficio() {
       return Madrid > Barcelona && Madrid > Lisboa
         ? alert("En Madrid se obtendrían más beneficios")
         : Barcelona > Lisboa
         ? alert("En Barcelona se obtendrían más beneficios")
         : alert("En Lisboa se obtendrían más beneficios");
     }
-    menorPrecioCiudad();
+    ciudadConMayorBeneficio();
   }
 
   return (
