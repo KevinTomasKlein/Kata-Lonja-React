@@ -1,4 +1,8 @@
 import { Ciudad } from "./Interfaces/Ciudad";
+import {
+  calcularBeneficio,
+  calcularBeneficioFinal,
+} from "./Utilidades/FuncionesCalculo";
 
 function FormularioPeso(): any {
   function devolverCiudadConMasBeneficio(event: any) {
@@ -13,10 +17,6 @@ function FormularioPeso(): any {
       event.target.elements.centollosInput.value
     );
 
-    let Madrid: number;
-    let Barcelona: number;
-    let Lisboa: number;
-
     const CIUDADES: Ciudad = {
       nombresCiudades: ["Madrid", "Barcelona", "Lisboa"],
       tipoAlimentos: ["Vieiras", "Pulpo", "Centollos"],
@@ -27,6 +27,10 @@ function FormularioPeso(): any {
       ],
       distanciaCiudad: [800, 1100, 600],
     };
+
+    let Madrid: number;
+    let Barcelona: number;
+    let Lisboa: number;
 
     for (let i: number = 0; i < CIUDADES.nombresCiudades.length; i++) {
       let precioPorCiudad: any;
@@ -78,30 +82,6 @@ function FormularioPeso(): any {
           }
         });
       });
-    }
-
-    function calcularBeneficio(
-      cantidadAlimento1: number,
-      precio1: number,
-      cantidadAlimento2: number,
-      precio2: number,
-      cantidadAlimento3: number,
-      precio3: number
-    ): number {
-      return (
-        precio1 * cantidadAlimento1 +
-        precio2 * cantidadAlimento2 +
-        cantidadAlimento3 * precio3
-      );
-    }
-
-    function calcularBeneficioFinal(
-      precioPorCiudad: number,
-      distanciaCiudad: number
-    ): number {
-      let desprecioPorTransporte = 1 - (0.01 * distanciaCiudad) / 100;
-      let precioCargarFurgoneta = 5 + 2 * distanciaCiudad;
-      return precioPorCiudad * desprecioPorTransporte - precioCargarFurgoneta;
     }
 
     function ciudadConMayorBeneficio() {
