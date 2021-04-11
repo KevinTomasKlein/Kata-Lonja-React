@@ -1,3 +1,5 @@
+import { Ciudad } from "./Interfaces/Ciudad";
+
 function FormularioPeso(): any {
   function devolverCiudadConMasBeneficio(event: any) {
     event.preventDefault();
@@ -14,13 +16,6 @@ function FormularioPeso(): any {
     let Madrid: number;
     let Barcelona: number;
     let Lisboa: number;
-
-    interface Ciudad {
-      nombresCiudades: string[];
-      tipoAlimentos: string[];
-      precioAlimentos: number[][];
-      distanciaCiudad: number[];
-    }
 
     const CIUDADES: Ciudad = {
       nombresCiudades: ["Madrid", "Barcelona", "Lisboa"],
