@@ -4,6 +4,7 @@ import {
   calcularBeneficioFinal,
 } from "./Utilidades/FuncionesCalculo";
 
+import "bootstrap/dist/css/bootstrap.css";
 function FormularioPeso(): any {
   function devolverCiudadConMasBeneficio(event: any) {
     event.preventDefault();
@@ -85,30 +86,49 @@ function FormularioPeso(): any {
     }
 
     function ciudadConMayorBeneficio() {
-      return Madrid > Barcelona && Madrid > Lisboa
+      /* return Madrid > Barcelona && Madrid > Lisboa
         ? alert("En Madrid se obtendrían más beneficios")
         : Barcelona > Lisboa
         ? alert("En Barcelona se obtendrían más beneficios")
-        : alert("En Lisboa se obtendrían más beneficios");
+        : alert("En Lisboa se obtendrían más beneficios"); */
+
+      if (Madrid > Barcelona && Madrid > Lisboa) {
+        alert("En Madrid se obtendrían más beneficios");
+      } else if (Barcelona > Lisboa) {
+        alert("En Barcelona se obtendrían más beneficios");
+      } else {
+        alert("En Lisboa se obtendrían más beneficios");
+      }
     }
     ciudadConMayorBeneficio();
   }
 
   return (
-    <form onSubmit={devolverCiudadConMasBeneficio}>
-      <fieldset>
-        <label htmlFor="vieirasInput">Vieiras:</label>
-        <input type="number" id="vieirasInput"></input>
+    <div className="container">
+      <form onSubmit={devolverCiudadConMasBeneficio} className="form">
+        <fieldset>
+          <label htmlFor="vieirasInput">Vieiras:</label>
+          <input type="number" id="vieirasInput"></input>
 
-        <label htmlFor="pulpoInput">Pulpo:</label>
-        <input type="number" id="pulpoInput"></input>
+          <label htmlFor="pulpoInput">Pulpo:</label>
+          <input type="number" id="pulpoInput"></input>
 
-        <label htmlFor="centollosInput">Centollos:</label>
-        <input type="number" id="centollosInput"></input>
+          <label htmlFor="centollosInput">Centollos:</label>
+          <input type="number" id="centollosInput"></input>
 
-        <input type="submit" value="enviar" />
-      </fieldset>
-    </form>
+          <input type="submit" value="enviar" />
+          <label htmlFor="resultado">Resultado:</label>
+          <input
+            className="form-control"
+            type="text"
+            placeholder="Readonly input here..."
+            aria-label="readonly input example"
+            readOnly
+            id="resultado"
+          ></input>
+        </fieldset>
+      </form>
+    </div>
   );
 }
 
