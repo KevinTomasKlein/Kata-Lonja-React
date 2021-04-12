@@ -17,7 +17,7 @@ function FormularioPeso(): any {
     const PESO_CENTOLLOS: number = parseFloat(
       event.target.elements.centollosInput.value
     );
-
+    const CARGA_MAX_FURGONETA: number = 200;
     const CIUDADES: Ciudad = {
       nombresCiudades: ["Madrid", "Barcelona", "Lisboa"],
       tipoAlimentos: ["Vieiras", "Pulpo", "Centollos"],
@@ -94,7 +94,19 @@ function FormularioPeso(): any {
         event.target.resultado.value = "Lisboa";
       }
     }
-    ciudadConMayorBeneficio();
+    if (PESO_VIEIRAS <= 0 || PESO_PULPOS <= 0 || PESO_CENTOLLOS <= 0) {
+      alert("El valor no puede ser negativo o 0!!!!!");
+    } else if (
+      PESO_CENTOLLOS + PESO_PULPOS + PESO_VIEIRAS >
+      CARGA_MAX_FURGONETA
+    ) {
+      alert("La suma del pescado a cargar no puede superar los 200Kg!");
+      event.target.elements.vieirasInput.value = 0;
+      event.target.elements.pulpoInput.value = 0;
+      event.target.elements.centollosInput.value = 0;
+    } else {
+      ciudadConMayorBeneficio();
+    }
   }
 
   return (
