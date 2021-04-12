@@ -1,3 +1,6 @@
+const PRECIO_CARGA_FURGONETA: number = 5;
+const PRECIO_KM_RECORRIDO: number = 2;
+
 export function calcularBeneficio(
   cantidadAlimento1: number,
   precio1: number,
@@ -18,6 +21,7 @@ export function calcularBeneficioFinal(
   distanciaCiudad: number
 ): number {
   let desprecioPorTransporte = 1 - (0.01 * distanciaCiudad) / 100;
-  let precioCargarFurgoneta = 5 + 2 * distanciaCiudad;
+  let precioCargarFurgoneta =
+    PRECIO_CARGA_FURGONETA + PRECIO_KM_RECORRIDO * distanciaCiudad;
   return precioPorCiudad * desprecioPorTransporte - precioCargarFurgoneta;
 }
