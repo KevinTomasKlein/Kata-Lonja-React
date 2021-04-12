@@ -11,6 +11,8 @@ function FormularioPeso(): any {
     const PESO_CENTOLLOS: number = parseFloat(
       event.target.elements.centollosInput.value
     );
+    const PRECIO_CARGA_FURGONETA: number = 5;
+    const PRECIO_KM_RECORRIDO: number = 2;
 
     let Madrid: number;
     let Barcelona: number;
@@ -106,53 +108,87 @@ function FormularioPeso(): any {
       distanciaCiudad: number
     ): number {
       let desprecioPorTransporte = 1 - (0.01 * distanciaCiudad) / 100;
-      let precioCargarFurgoneta = 5 + 2 * distanciaCiudad;
+      let precioCargarFurgoneta =
+        PRECIO_CARGA_FURGONETA + PRECIO_KM_RECORRIDO * distanciaCiudad;
       return precioPorCiudad * desprecioPorTransporte - precioCargarFurgoneta;
     }
 
     function ciudadConMayorBeneficio() {
-      /* return Madrid > Barcelona && Madrid > Lisboa
-        ? alert("En Madrid se obtendrían más beneficios")
-        : Barcelona > Lisboa
-        ? alert("En Barcelona se obtendrían más beneficios")
-        : alert("En Lisboa se obtendrían más beneficios"); */
-
       if (Madrid > Barcelona && Madrid > Lisboa) {
         alert("En Madrid se obtendrían más beneficios");
+        event.target.resultado.value = "Madrid";
       } else if (Barcelona > Lisboa) {
         alert("En Barcelona se obtendrían más beneficios");
+        event.target.resultado.value = "Barcelona";
       } else {
         alert("En Lisboa se obtendrían más beneficios");
+        event.target.resultado.value = "Lisboa";
       }
     }
     ciudadConMayorBeneficio();
   }
 
   return (
-    <div className="container">
-      <form onSubmit={devolverCiudadConMasBeneficio} className="form">
-        <fieldset>
-          <label htmlFor="vieirasInput">Vieiras:</label>
-          <input type="number" id="vieirasInput"></input>
-
-          <label htmlFor="pulpoInput">Pulpo:</label>
-          <input type="number" id="pulpoInput"></input>
-
-          <label htmlFor="centollosInput">Centollos:</label>
-          <input type="number" id="centollosInput"></input>
-
-          <input type="submit" value="enviar" />
-          <label htmlFor="resultado">Resultado:</label>
-          <input
-            className="form-control"
-            type="text"
-            placeholder="Readonly input here..."
-            aria-label="readonly input example"
-            readOnly
-            id="resultado"
-          ></input>
-        </fieldset>
-      </form>
+    <div className="container row g-3 m-0 m-auto ">
+      <div className="col-md-12">
+        <form onSubmit={devolverCiudadConMasBeneficio} className="form ">
+          <legend>KATA-LONJA-REACT</legend>
+          <fieldset className="p-3 d-inline-flex">
+            <div className="col-md-6">
+              <label htmlFor="vieirasInput" className="form-label">
+                Vieiras:
+              </label>
+              <input
+                type="number"
+                id="vieirasInput"
+                className="form-control"
+              ></input>
+            </div>
+            <div className="col-md-6">
+              <label htmlFor="pulpoInput" className="form-label">
+                Pulpo:
+              </label>
+              <input
+                type="number"
+                id="pulpoInput"
+                className="form-control"
+              ></input>
+            </div>
+            <div className="col-md-6">
+              <label htmlFor="centollosInput" className="form-label">
+                Centollos:
+              </label>
+              <input
+                type="number"
+                id="centollosInput"
+                className="form-control"
+              ></input>
+            </div>
+            <div className="col-md-6">
+              <label htmlFor="resultado" className="form-label mt-1">
+                Resultado:
+              </label>
+              <input
+                className="form-control"
+                type="text"
+                placeholder="Ciudad con mayor beneficio..."
+                aria-label="ciudad con mayor beneficio..."
+                readOnly
+                id="resultado"
+              ></input>
+            </div>
+            <div className="col-md-6 ">
+              <label htmlFor="btnEnviar" className="form-label"></label>
+              <input
+                type="submit"
+                value="Enviar"
+                id="btnEnviar"
+                className="form-control"
+              />
+            </div>
+          </fieldset>
+        </form>
+      </div>
     </div>
   );
 }
