@@ -84,26 +84,38 @@ function FormularioPeso(): any {
         });
       });
     }
-
+    // @ts-ignore: Object is possibly 'null'.
     function ciudadConMayorBeneficio() {
       if (Madrid > Barcelona && Madrid > Lisboa) {
-        event.target.resultado.value = "Madrid";
+        // @ts-ignore: Object is possibly 'null'.
+        document.getElementById("texto").innerHTML = "Madrid";
       } else if (Barcelona > Lisboa) {
-        event.target.resultado.value = "Barcelona";
+        // @ts-ignore: Object is possibly 'null'.
+        document.getElementById("texto").innerHTML = "Barcelona";
       } else {
-        event.target.resultado.value = "Lisboa";
+        // @ts-ignore: Object is possibly 'null'.
+        document.getElementById("texto").innerHTML = "Lisboa";
       }
     }
     if (PESO_VIEIRAS <= 0 || PESO_PULPOS <= 0 || PESO_CENTOLLOS <= 0) {
-      alert("El valor no puede ser negativo o 0!!!!!");
+      // @ts-ignore: Object is possibly 'null'.
+      document.getElementById("texto").innerHTML =
+        "El valor no puede ser negativo !!!!!";
+    } else if (
+      isNaN(PESO_VIEIRAS) ||
+      isNaN(PESO_PULPOS) ||
+      isNaN(PESO_CENTOLLOS)
+    ) {
+      // @ts-ignore: Object is possibly 'null'.
+      document.getElementById("texto").innerHTML =
+        "El valor no puede ser nulo!!!!!";
     } else if (
       PESO_CENTOLLOS + PESO_PULPOS + PESO_VIEIRAS >
       CARGA_MAX_FURGONETA
     ) {
-      alert("La suma del pescado a cargar no puede superar los 200Kg!");
-      event.target.elements.vieirasInput.value = 0;
-      event.target.elements.pulpoInput.value = 0;
-      event.target.elements.centollosInput.value = 0;
+      // @ts-ignore: Object is possibly 'null'.
+      document.getElementById("texto").innerHTML =
+        "La suma del pescado a cargar no puede superar los 200Kg!";
     } else {
       ciudadConMayorBeneficio();
     }
@@ -145,20 +157,7 @@ function FormularioPeso(): any {
                 className="form-control"
               ></input>
             </div>
-            <div className="col-md-6">
-              <label htmlFor="resultado" className="form-label mt-1">
-                Resultado:
-              </label>
-              <input
-                className="form-control"
-                type="text"
-                placeholder="Ciudad con mayor beneficio..."
-                aria-label="ciudad con mayor beneficio..."
-                readOnly
-                id="resultado"
-              ></input>
-            </div>
-            <div className="col-md-6 ">
+            <div className="col-md-6 mt-2">
               <label htmlFor="btnEnviar" className="form-label"></label>
               <input
                 type="submit"
@@ -166,6 +165,12 @@ function FormularioPeso(): any {
                 id="btnEnviar"
                 className="form-control"
               />
+            </div>
+            <div className="col-md-12 mt-5">
+              <p
+                className="text-uppercase font-weight-bold text-info bg-light"
+                id="texto"
+              ></p>
             </div>
           </fieldset>
         </form>
