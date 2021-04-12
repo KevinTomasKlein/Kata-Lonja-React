@@ -87,13 +87,10 @@ function FormularioPeso(): any {
 
     function ciudadConMayorBeneficio() {
       if (Madrid > Barcelona && Madrid > Lisboa) {
-        alert("En Madrid se obtendrían más beneficios");
         event.target.resultado.value = "Madrid";
       } else if (Barcelona > Lisboa) {
-        alert("En Barcelona se obtendrían más beneficios");
         event.target.resultado.value = "Barcelona";
       } else {
-        alert("En Lisboa se obtendrían más beneficios");
         event.target.resultado.value = "Lisboa";
       }
     }
